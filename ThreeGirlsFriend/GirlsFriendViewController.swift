@@ -7,14 +7,14 @@
 //
 
 import UIKit
-
+struct Info{
+    
+    var name:String = ""
+    var star:String = ""
+    var image:String = ""
+}
 class GirlsFriendViewController: UIViewController {
-    struct Info{
-        
-        var name:String
-        var star:String
-        var image:String
-    }
+
     
     var girlsdata = [
         Info(name : "羅小姐", star : "水瓶座", image : "1.jpg"),
@@ -24,13 +24,12 @@ class GirlsFriendViewController: UIViewController {
     
     @IBAction func girlschoose(_ sender: UIBarButtonItem) {
 
-            let controller =
-                self.storyboard?.instantiateViewController(withIdentifier:
+        let controller = self.storyboard?.instantiateViewController(withIdentifier:
                     "InfoController") as? InfoViewController
-            self.navigationController?.pushViewController(controller!,animated: true)
-            controller?.detailname = girlsdata[sender.tag].name
-            controller?.detailstar = girlsdata[sender.tag].star
-            controller?.detailimage = girlsdata[sender.tag].image
+        
+        self.navigationController?.pushViewController(controller!,animated: true)
+        
+        controller?.detailInfo = girlsdata[sender.tag]
     }
 
     override func viewDidLoad() {

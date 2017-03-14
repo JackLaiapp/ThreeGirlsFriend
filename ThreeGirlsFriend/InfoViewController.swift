@@ -9,40 +9,38 @@
 import UIKit
 
 class InfoViewController: UIViewController {
-    var detailname:String!
-    var detailstar:String!
-    var detailimage:String!
+
+    var detailInfo = Info()
     
     @IBOutlet var starLabel: UILabel!
     @IBOutlet var nameLabel: UILabel!
+    
         override func prepare(for segue: UIStoryboardSegue, sender:
             Any?) {
-            //let button = sender as! UILabel
-            let controller = segue.destination as!
-            EditViewController
-            controller.name = nameLabel.text
-            controller.star = starLabel.text
+
+            let controller = segue.destination as! EditViewController
+            
+            controller.editInfo = detailInfo
+
     }
+    
     func getUpdateNoti(noti:Notification) {
-        print(noti.userInfo!)
-        let name = noti.userInfo!["name"] as! String
-        self.nameLabel.text = name
+
+        let Info = noti.userInfo!["Info"] as! Info
+        
+        nameLabel.text = Info.name
+        starLabel.text = Info.star
     }
-    func getUpdateNoti2(noti:Notification) {
-        print(noti.userInfo!)
-        let star = noti.userInfo!["star"] as! String
-        self.starLabel.text = star
-    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.nameLabel.text = self.detailname
-        self.starLabel.text = self.detailstar
-        let notificationName = Notification.Name("GetUpdateName")
-        let notificationStar = Notification.Name("GetUpdateStar")
+        
+        nameLabel.text = detailInfo.name
+        starLabel.text = detailInfo.star
+        
+        let notificationName = Notification.Name("GetUpdateInfo")
+
         NotificationCenter.default.addObserver(self, selector:#selector(InfoViewController.getUpdateNoti(noti:)), name: notificationName,object: nil)
-        NotificationCenter.default.addObserver(self, selector:#selector(InfoViewController.getUpdateNoti2(noti:)), name: notificationStar,object: nil)
-        //_ = self.navigationController?.popViewController(animated: true)
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

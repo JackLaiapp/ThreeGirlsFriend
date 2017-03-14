@@ -9,26 +9,30 @@
 import UIKit
 
 class EditViewController: UIViewController {
-    var name: String?
-    var star: String?
+
     @IBOutlet var starTextField: UITextField!
     @IBOutlet var nameTextField: UITextField!
+
+    var editInfo = Info()
     
     @IBAction func Back(_ sender: Any) {
         
-        let notificationName = Notification.Name("GetUpdateName")
+        editInfo.name = nameTextField.text!
+        editInfo.star = starTextField.text!
+        
+        let notificationName = Notification.Name("GetUpdateInfo")
+        
         NotificationCenter.default.post(name: notificationName,
-                                        object: nil, userInfo: ["name":self.nameTextField.text!])
-        let notificationConstellation = Notification.Name("GetUpdateStar")
-        NotificationCenter.default.post(name: notificationConstellation,
-                                        object: nil, userInfo: ["star":self.starTextField.text!])
+                                        object: nil, userInfo: ["Info":self.editInfo])
     
         self.dismiss(animated: true, completion: nil)
         
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        nameTextField.text = editInfo.name
+        starTextField.text = editInfo.star
         // Do any additional setup after loading the view.
     }
 
