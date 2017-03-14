@@ -14,6 +14,7 @@ class InfoViewController: UIViewController {
     
     @IBOutlet var starLabel: UILabel!
     @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var imageView: UIImageView!
     
         override func prepare(for segue: UIStoryboardSegue, sender:
             Any?) {
@@ -30,6 +31,8 @@ class InfoViewController: UIViewController {
         
         nameLabel.text = Info.name
         starLabel.text = Info.star
+        imageView.image = UIImage(named: Info.image)
+        
     }
 
     override func viewDidLoad() {
@@ -37,6 +40,7 @@ class InfoViewController: UIViewController {
         
         nameLabel.text = detailInfo.name
         starLabel.text = detailInfo.star
+        imageView.image = UIImage(named: detailInfo.image)
         
         let notificationName = Notification.Name("GetUpdateInfo")
 
