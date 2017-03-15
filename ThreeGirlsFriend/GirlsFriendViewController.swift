@@ -18,8 +18,8 @@ class GirlsFriendViewController: UIViewController {
     
     var girlsdata = [
         Info(name : "羅小姐", star : "水瓶座", image : "Luo.jpg"),
-        Info(name : "高小姐", star : "射手座", image : "2.jpg"),
-        Info(name : "張小姐", star : "牡羊座", image : "3.jpg"),
+        Info(name : "高小姐", star : "射手座", image : "kao.jpg"),
+        Info(name : "張小姐", star : "牡羊座", image : "Chang.jpg"),
         ]
     
     @IBAction func girlschoose(_ sender: UIBarButtonItem) {
